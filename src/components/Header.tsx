@@ -20,7 +20,7 @@ export const Header: React.FC<Props> = ({
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // onErrorMessage(ErrorMessages.none);
+    onErrorMessage(ErrorMessages.none);
 
     const trimmedTitleQuery = titleQuery.trim();
 
@@ -36,7 +36,7 @@ export const Header: React.FC<Props> = ({
     await onAddTodo(trimmedTitleQuery)
       .then(() => {
         setTitleQuery('');
-        // onErrorMessage(ErrorMessages.none);
+        onErrorMessage(ErrorMessages.none);
       })
       .finally(() => setSubmitting(false));
   };
