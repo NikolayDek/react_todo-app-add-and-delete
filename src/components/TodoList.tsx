@@ -15,7 +15,6 @@ export const TodoList: React.FC<Props> = ({
   tempTodo,
   onDeletedTodo,
   deletedTodosId,
-  completedTodos,
 }) => {
   return (
     <>
@@ -24,8 +23,7 @@ export const TodoList: React.FC<Props> = ({
           todo={todo}
           key={todo.id}
           onDeletedTodo={onDeletedTodo}
-          deletedTodoId={deletedTodosId}
-          completedTodos={completedTodos}
+          deletedTodosId={deletedTodosId}
         />
       ))}
 

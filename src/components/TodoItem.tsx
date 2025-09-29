@@ -6,15 +6,14 @@ type Props = {
   todo?: Todo;
   tempTodo?: Todo;
   onDeletedTodo: (id: number) => Promise<void>;
-  deletedTodoId?: number[];
-  isDeletingTodos?: boolean;
+  deletedTodosId?: number[];
 };
 
 export const TodoItem: React.FC<Props> = ({
   todo,
   tempTodo,
   onDeletedTodo,
-  deletedTodoId,
+  deletedTodosId,
 }) => {
   return (
     //{/* This is a completed todo */}
@@ -49,8 +48,7 @@ export const TodoItem: React.FC<Props> = ({
         data-cy="TodoLoader"
         className={classNames('modal', 'overlay', {
           'is-active': Boolean(
-            tempTodo || deletedTodoId?.includes(todo?.id ?? -1),
-            // ((completedTodos as Todo[]).includes(todo as Todo) && isDeletingTodos)
+            tempTodo || deletedTodosId?.includes(todo?.id ?? -1),
           ),
         })}
       >
