@@ -74,6 +74,7 @@ export const App: React.FC = () => {
     };
 
     setTempTodo(newTodo);
+    
     setErrorMessage(ErrorMessages.none);
 
     return addTodo(newTodo)
