@@ -80,6 +80,7 @@ export const App: React.FC = () => {
     };
 
     setTempTodo(newTodo);
+    setErrorMessage(ErrorMessages.none);
 
     return addTodo(newTodo)
       .then(todoFromServer => {
@@ -87,13 +88,13 @@ export const App: React.FC = () => {
       })
       .catch(() => {
         handleErrorMessage(ErrorMessages.todoAddError);
-        
+
         return Promise.reject();
       })
       .finally(() => {
         setTempTodo(null);
       });
-  };
+  }
 
   function handleDeleteTodo(id: number) {
     setErrorMessage(ErrorMessages.none);
@@ -105,24 +106,23 @@ export const App: React.FC = () => {
       })
       .catch(() => {
         handleErrorMessage(ErrorMessages.todoDeleteError);
-        
+
         return Promise.reject();
       })
       .finally(() =>
         setDeletedTodosId(prev => prev.filter(prevID => prevID !== id)),
       );
-  };
+  }
 
   function handleDeleteCompletedTodos() {
     Promise.allSettled(
-      completedTodos.map(todo => handleDeleteTodo(todo.id)))
-      .then(results => {
-        if (results.some(res => res.status === 'rejected')) {
-          handleErrorMessage(ErrorMessages.todosDeleteError);
-        }
+      completedTodos.map(todo => handleDeleteTodo(todo.id)),
+    ).then(results => {
+      if (results.some(res => res.status === 'rejected')) {
+        handleErrorMessage(ErrorMessages.todosDeleteError);
       }
-    )
-  };
+    });
+  }
 
   const filteredTodos = TodosFilter(filterType);
   const itemsLeft = todos.filter(todo => !todo.completed).length;
