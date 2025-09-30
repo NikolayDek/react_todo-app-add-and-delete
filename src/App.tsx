@@ -63,13 +63,7 @@ export const App: React.FC = () => {
       case FilterType.completed:
         return todos.filter(todo => todo.completed);
     }
-  };
-
-  // const handleErrorMessage = (message: ErrorMessages) => {
-  //   setErrorMessage(message);
-
-  //   setTimeout(() => setErrorMessage(ErrorMessages.none), 3000);
-  // };
+  }
 
   function handleAddTodo(title: string) {
     const newTodo: Todo = {
@@ -136,6 +130,7 @@ export const App: React.FC = () => {
           todos={todos}
           onErrorMessage={handleErrorMessage}
           onAddTodo={handleAddTodo}
+          deletedTodosId={deletedTodosId}
         />
 
         <section className="todoapp__main" data-cy="TodoList">
@@ -148,7 +143,6 @@ export const App: React.FC = () => {
           />
         </section>
 
-        {/* Hide the footer if there are no todos */}
         {todos.length !== 0 && (
           <Footer
             itemsLeft={itemsLeft}

@@ -7,12 +7,14 @@ type Props = {
   todos: Todo[];
   onErrorMessage: (error: ErrorMessages) => void;
   onAddTodo: (title: string) => Promise<void>;
+  deletedTodosId: number[];
 };
 
 export const Header: React.FC<Props> = ({
   todos,
   onErrorMessage,
   onAddTodo,
+  deletedTodosId,
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [titleQuery, setTitleQuery] = useState('');
@@ -49,7 +51,7 @@ export const Header: React.FC<Props> = ({
     if (!submitting && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [submitting]);
+  }, [submitting, deletedTodosId]);
 
   return (
     <header className="todoapp__header">
