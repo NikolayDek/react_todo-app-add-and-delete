@@ -63,7 +63,7 @@ export const App: React.FC = () => {
       case FilterType.completed:
         return todos.filter(todo => todo.completed);
     }
-  }
+  };
 
   function handleAddTodo(title: string) {
     const newTodo: Todo = {
